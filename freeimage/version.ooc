@@ -1,5 +1,4 @@
 use freeimage
-include stdio
 
 /*
  * FreeImage wrapper for ooc
@@ -12,4 +11,3 @@ FreeImage: cover {
         ReleaseSerial: extern(FREEIMAGE_RELEASE_SERIAL) static Int
 }
 
-printf("FreeImage %i.%i.%i\n", FreeImage MajorVersion, FreeImage MinorVersion, FreeImage ReleaseSerial)
