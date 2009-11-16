@@ -1,0 +1,6 @@
+Name: FreeImage
+Description: FreeImage
+Pkgs: 
+Includes: FreeImage.h
+Requires: 
+SourcePath: .
