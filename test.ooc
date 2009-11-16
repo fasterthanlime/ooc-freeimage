@@ -1,3 +1,4 @@
+use freeimage
 include freeimage/Version
 include stdio
 
