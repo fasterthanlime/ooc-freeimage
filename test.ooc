@@ -1,3 +1,4 @@
+include freeimage/Version
 include stdio
 
 main: func {
