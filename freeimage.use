@@ -1,5 +1,5 @@
 Name: FreeImage
-Description: FreeImage
+Description: A fast and simple graphics library
 Pkgs: 
 Includes: FreeImage.h
 Requires: 
