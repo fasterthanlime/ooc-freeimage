@@ -1,5 +1,5 @@
 use freeimage
-include freeimage/Version
+import freeimage/Version
 include stdio
 
 main: func {
