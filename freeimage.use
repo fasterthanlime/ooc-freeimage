@@ -1,6 +1,5 @@
-Name: FreeImage
+Name: FreeImage 3.13.0
 Description: A fast and simple graphics library
-Pkgs: 
+Libs: -lfreeimage-3.13.0
 Includes: FreeImage.h
-Requires: 
 SourcePath: .
