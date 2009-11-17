@@ -6,5 +6,5 @@ main: func {
         println(FreeImage getCopyrightMessage())
 
         bitmap := Bitmap new(320, 240, 32)
-        println(bitmap width() toString())
+        println(bitmap width() + "x" + bitmap height() + " bpp: " + bitmap bpp())
 }

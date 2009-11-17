@@ -8,6 +8,10 @@ Bitmap: cover from BitmapStruct* {
         }
 
         width: extern(FreeImage_GetWidth) func -> Int
+        height: extern(FreeImage_GetHeight) func -> Int
+        bpp: extern(FreeImage_GetBPP) func -> Int
+
+        imageType: extern(FreeImage_GetImageType) func -> Int
 }
 
 FreeImage_Allocate: extern func(Int, Int, Int, Int, Int, Int) -> Bitmap
