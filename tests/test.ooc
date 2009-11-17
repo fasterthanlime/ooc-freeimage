@@ -1,7 +1,10 @@
 use freeimage
-import freeimage/Version
-include stdio
+import freeimage/[Version, Bitmap]
 
 main: func {
-        printf("FreeImage %i.%i.%i\n", FreeImage MajorVersion, FreeImage MinorVersion, FreeImage ReleaseSerial)
+        println("FreeImage version " + FreeImage getVersion())
+        println(FreeImage getCopyrightMessage())
+
+        bitmap := Bitmap new(320, 240, 32)
+        println(bitmap width() toString())
 }
