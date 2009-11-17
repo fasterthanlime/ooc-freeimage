@@ -7,6 +7,8 @@ Bitmap: cover from BitmapStruct* {
                 return FreeImage_Allocate(width, height, bpp, 0, 0, 0) as This
         }
 
+        clone: extern(FreeImage_Clone) func -> This
+
         width: extern(FreeImage_GetWidth) func -> Int
         height: extern(FreeImage_GetHeight) func -> Int
         bpp: extern(FreeImage_GetBPP) func -> Int
