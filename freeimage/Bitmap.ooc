@@ -29,7 +29,7 @@ Bitmap: cover from BitmapStruct* {
         height: extern(FreeImage_GetHeight) func -> Int
         bpp: extern(FreeImage_GetBPP) func -> Int
 
-        imageType: extern(FreeImage_GetImageType) func -> Int
+        imageType: extern(FreeImage_GetImageType) func -> ImageType
 }
 
 FreeImage_Allocate: extern func(Int, Int, Int, Int, Int, Int) -> Bitmap
@@ -44,6 +44,7 @@ FreeImage_GetFIFFromFilename: extern func(String) -> Int
 FreeImage_FIFSupportsReading: extern func(Int) -> Bool
 
 // FREE_IMAGE_TYPE enum
+ImageType: cover from Int
 FIT_UNKNOWN: extern Int // unknown type
 FIT_BITMAP:  extern Int // standard image               : 1-, 4-, 8-, 16-, 24-, 32-bit
 FIT_UINT16:  extern Int // array of unsigned short      : unsigned 16-bit
