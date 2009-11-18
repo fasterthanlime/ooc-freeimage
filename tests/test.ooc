@@ -1,7 +1,6 @@
 use freeimage
 import freeimage/[Version, Bitmap]
 import io/File
-import structs/ArrayList
 
 main: func (argc : Int, argv : String*) {
         println("FreeImage version " + FreeImage getVersion())
