@@ -1,5 +1,6 @@
 use freeimage
 import io/File
+import freeimage/IOHandler
 
 BitmapStruct: cover from FIBITMAP
 
@@ -21,7 +22,19 @@ Bitmap: cover from BitmapStruct* {
                 return null
         }
 
-        new: static func ~withFile(file : File) -> This { This new(file path) }
+        new: static func ~withFile(file : File) -> This {
+                This new(file path)
+        }
+
+        new: static func ~fromHandle (io : IOHandler*, handle : Handle) -> This {
+                fif := FIF_UNKNOWN
+                fif = FreeImage_GetFileTypeFromHandle(io, handle, 0)
+                if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsReading(fif)) {
+                        bitmap := FreeImage_LoadFromHandle(fif, io, handle, 0)
+                        return bitmap
+                }
+                return null
+        }
 
         clone: extern(FreeImage_Clone) func -> This
 
@@ -34,12 +47,14 @@ Bitmap: cover from BitmapStruct* {
 
 FreeImage_Allocate: extern func(Int, Int, Int, Int, Int, Int) -> Bitmap
 FreeImage_Load: extern func(ImageFormat, String, Int) -> Bitmap
+FreeImage_LoadFromHandle: extern func(ImageFormat, IOHandler*, Handle, Int) -> Bitmap
 version(!windows) {
         FreeImage_GetFileType: extern func(String, Int) -> ImageFormat
 }
 version(windows) {
         FreeImage_GetFileType: extern(FreeImage_GetFileTypeU) func(String, Int) -> ImageFormat
 }
+FreeImage_GetFileTypeFromHandle: extern func(IOHandler*, Handle, Int) -> ImageFormat
 FreeImage_GetFIFFromFilename: extern func(String) -> ImageFormat
 FreeImage_FIFSupportsReading: extern func(ImageFormat) -> Bool
 
