@@ -9,7 +9,7 @@ IOHandler: cover from FreeImageIO {
     tell_proc:  extern Func (Handle) -> Long
 
     new: static func (.read_proc, .write_proc, .seek_proc, .tell_proc) -> This {
-        this : This
+        this: This
         this read_proc = read_proc
         this write_proc = write_proc
         this seek_proc = seek_proc
@@ -18,6 +18,7 @@ IOHandler: cover from FreeImageIO {
     }
 
     new: static func ~empty -> This {
-        This new(null, null, null, null)
+        this: This
+        return this
     }
 }
