@@ -4,7 +4,7 @@ import freeimage/IOHandler
 
 Bitmap: cover from FIBITMAP* {
     new: static func(width, height, bpp : Int) -> This {
-            return FreeImage_Allocate(width, height, bpp, 0, 0, 0) as This
+        FreeImage_Allocate(width, height, bpp, 0, 0, 0)
     }
 
     new: static func ~fromPath (path : String) -> This {
