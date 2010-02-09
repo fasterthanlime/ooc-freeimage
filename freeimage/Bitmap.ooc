@@ -3,11 +3,11 @@ import io/File
 import freeimage/IOHandler
 
 Bitmap: cover from FIBITMAP* {
-    new: static func(width, height, bpp : Int) -> This {
+    new: static func (width, height, bpp: Int) -> This {
         FreeImage_Allocate(width, height, bpp, 0, 0, 0)
     }
 
-    new: static func ~fromPath (path : String) -> This {
+    new: static func ~fromPath (path: String) -> This {
         fif := FIF_UNKNOWN
         fif = FreeImage_GetFileType(path, 0)
         if (fif == FIF_UNKNOWN) {
@@ -20,11 +20,11 @@ Bitmap: cover from FIBITMAP* {
         return null
     }
 
-    new: static func ~fromFile (file : File) -> This {
+    new: static func ~fromFile (file: File) -> This {
         This new(file path)
     }
 
-    new: static func ~fromHandle (io : IOHandler*, handle : Handle) -> This {
+    new: static func ~fromHandle (io: IOHandler*, handle: Handle) -> This {
         fif := FIF_UNKNOWN
         fif = FreeImage_GetFileTypeFromHandle(io, handle, 0)
         if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsReading(fif)) {
@@ -43,18 +43,18 @@ Bitmap: cover from FIBITMAP* {
     imageType: extern(FreeImage_GetImageType) func -> ImageType
 }
 
-FreeImage_Allocate: extern func(Int, Int, Int, Int, Int, Int) -> Bitmap
-FreeImage_Load: extern func(ImageFormat, String, Int) -> Bitmap
-FreeImage_LoadFromHandle: extern func(ImageFormat, IOHandler*, Handle, Int) -> Bitmap
+FreeImage_Allocate: extern func (Int, Int, Int, Int, Int, Int) -> Bitmap
+FreeImage_Load: extern func (ImageFormat, String, Int) -> Bitmap
+FreeImage_LoadFromHandle: extern func (ImageFormat, IOHandler*, Handle, Int) -> Bitmap
 version(!windows) {
-    FreeImage_GetFileType: extern func(String, Int) -> ImageFormat
+    FreeImage_GetFileType: extern func (String, Int) -> ImageFormat
 }
 version(windows) {
-    FreeImage_GetFileType: extern(FreeImage_GetFileTypeU) func(String, Int) -> ImageFormat
+    FreeImage_GetFileType: extern(FreeImage_GetFileTypeU) func (String, Int) -> ImageFormat
 }
-FreeImage_GetFileTypeFromHandle: extern func(IOHandler*, Handle, Int) -> ImageFormat
-FreeImage_GetFIFFromFilename: extern func(String) -> ImageFormat
-FreeImage_FIFSupportsReading: extern func(ImageFormat) -> Bool
+FreeImage_GetFileTypeFromHandle: extern func (IOHandler*, Handle, Int) -> ImageFormat
+FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat
+FreeImage_FIFSupportsReading: extern func (ImageFormat) -> Bool
 
 // FREE_IMAGE_FORMAT
 ImageFormat: cover from Int
