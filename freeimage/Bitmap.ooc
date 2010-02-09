@@ -11,7 +11,7 @@ Bitmap: cover from FIBITMAP* {
         fif := FIF_UNKNOWN
         fif = FreeImage_GetFileType(path, 0)
         if (fif == FIF_UNKNOWN) {
-            fif = FreeImage_GetFIFFromFilename(path);
+            fif = FreeImage_GetFIFFromFilename(path)
         }
         if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsReading(fif)) {
             bitmap := FreeImage_Load(fif, path, 0)
