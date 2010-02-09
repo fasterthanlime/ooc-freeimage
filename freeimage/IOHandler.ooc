@@ -16,12 +16,6 @@ IOHandler: cover from FreeImageIO {
         this tell_proc = tell_proc
         return this
     }
-    new: static func ~withoutWrite (.read_proc, .seek_proc, .tell_proc) -> This {
-        This new(read_proc, null, seek_proc, tell_proc)
-    }
-    new: static func ~withoutRead (.write_proc, .seek_proc, .tell_proc) -> This {
-        This new(null, write_proc, seek_proc, tell_proc)
-    }
 
     new: static func ~empty -> This {
         This new(null, null, null, null)
