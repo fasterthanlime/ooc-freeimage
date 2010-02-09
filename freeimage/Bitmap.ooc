@@ -7,7 +7,7 @@ Bitmap: cover from FIBITMAP* {
             return FreeImage_Allocate(width, height, bpp, 0, 0, 0) as This
     }
 
-    new: static func ~withPath(path : String) -> This {
+    new: static func ~fromPath (path : String) -> This {
         fif := FIF_UNKNOWN
         fif = FreeImage_GetFileType(path, 0)
         if (fif == FIF_UNKNOWN) {
@@ -20,7 +20,7 @@ Bitmap: cover from FIBITMAP* {
         return null
     }
 
-    new: static func ~withFile(file : File) -> This {
+    new: static func ~fromFile (file : File) -> This {
         This new(file path)
     }
 
