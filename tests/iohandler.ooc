@@ -23,7 +23,7 @@ htell: func (handle: Handle) -> Long {
 }
 
 main: func {
-    io := IOHandler new(hread, hseek, htell)
+    io := IOHandler new(hread, null, hseek, htell)
     bitmap := Bitmap new(io&, stdin as Handle)
     "%ix%i bpp: %i" format(bitmap width(), bitmap height(), bitmap bpp()) println()
 }
