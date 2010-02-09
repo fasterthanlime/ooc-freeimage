@@ -10,6 +10,9 @@ main: func (args : Array<String>) {
     bitmap1 := Bitmap new(320, 240, 32)
     printf("new bitmap: %ix%i bpp: %i\n", bitmap1 height(), bitmap1 width(), bitmap1 bpp())
 
+    bitmap1c := bitmap1 clone()
+    printf("clone bitmap: %ix%i bpp: %i\n", bitmap1c height(), bitmap1c width(), bitmap1c bpp())
+
     if (args size() != 2) {
         println("Please provide the path to a bitmap file to test loading bitmaps from files.")
     }
