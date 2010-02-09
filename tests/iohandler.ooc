@@ -10,20 +10,20 @@ use freeimage
 import freeimage/[IOHandler, Bitmap]
 import io/FileReader
 
-hreadp: func (buffer: Pointer, size: UInt, count: UInt, handle: Handle) -> UInt {
-        fread(buffer, size, count, handle)
+hread: func (buffer: Pointer, size: UInt, count: UInt, handle: Handle) -> UInt {
+    fread(buffer, size, count, handle)
 }
 
 hseek: func (handle: Handle, offset: Long, origin: Int) -> Int {
-        fseek(handle, offset, origin)
+    fseek(handle, offset, origin)
 }
 
 htell: func (handle: Handle) -> Long {
-        ftell(handle)
+    ftell(handle)
 }
 
 main: func {
-        io := IOHandler new(hread, hseek, htell)
-        bitmap := Bitmap new(io&, stdin as Handle)
-        "%ix%i bpp: %i" format(bitmap width(), bitmap height(), bitmap bpp()) println()
+    io := IOHandler new(hread, hseek, htell)
+    bitmap := Bitmap new(io&, stdin as Handle)
+    "%ix%i bpp: %i" format(bitmap width(), bitmap height(), bitmap bpp()) println()
 }
