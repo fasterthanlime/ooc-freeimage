@@ -41,6 +41,10 @@ Bitmap: cover from FIBITMAP* {
     bpp: extern(FreeImage_GetBPP) func -> Int
 
     imageType: extern(FreeImage_GetImageType) func -> ImageType
+
+    // Toolkit functions
+    rescale: extern(FreeImage_Rescale) func (width, height: Int, filter: Filter) -> This
+    thumbnail: extern(FreeImage_MakeThumbnail) func (max: Int, convert: Bool) -> This
 }
 
 FreeImage_Allocate: extern func (Int, Int, Int, Int, Int, Int) -> Bitmap
