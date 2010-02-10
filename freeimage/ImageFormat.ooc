@@ -1,5 +1,14 @@
-ImageFormat: cover from Int {
+use freeimage
+import structs/ArrayList, text/StringTokenizer
+
+ImageFormat: cover from FREE_IMAGE_FORMAT {
     toString: extern(FreeImage_GetFormatFromFIF) func -> String
+
+    extensionListString: extern(FreeImage_GetFIFExtensionList) func -> String
+
+    extensionList: func -> ArrayList<String> {
+        extensionListString() split(',') toArrayList()
+    }
 }
 
 // FREE_IMAGE_FORMAT

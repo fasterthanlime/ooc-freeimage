@@ -57,7 +57,12 @@ FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat
 FreeImage_FIFSupportsReading: extern func (ImageFormat) -> Bool
 
 // FREE_IMAGE_TYPE enum
-ImageType: cover from Int
+ImageType: cover from FREE_IMAGE_TYPE
 FIT_UNKNOWN, FIT_BITMAP, FIT_UINT16, FIT_INT16, FIT_UINT32, FIT_INT32,
 FIT_FLOAT, FIT_DOUBLE, FIT_COMPLEX, FIT_RGB16, FIT_RGBA16, FIT_RGBF,
 FIT_RGBAF : extern const ImageType
+
+// FREE_IMAGE_FILTER enum
+Filter: cover from FREE_IMAGE_FILTER
+FILTER_BOX, FILTER_BICUBIC, FILTER_BILINEAR, FILTER_BSPLINE, FILTER_CATMULLROM,
+FILTER_LANCZOS3 : extern const Filter
