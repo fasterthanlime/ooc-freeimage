@@ -46,12 +46,8 @@ Bitmap: cover from FIBITMAP* {
 FreeImage_Allocate: extern func (Int, Int, Int, Int, Int, Int) -> Bitmap
 FreeImage_Load: extern func (ImageFormat, String, Int) -> Bitmap
 FreeImage_LoadFromHandle: extern func (ImageFormat, IOHandler*, Handle, Int) -> Bitmap
-version(!windows) {
-    FreeImage_GetFileType: extern func (String, Int) -> ImageFormat
-}
-version(windows) {
-    FreeImage_GetFileType: extern(FreeImage_GetFileTypeU) func (String, Int) -> ImageFormat
-}
+FreeImage_Save: extern func (Format, Bitmap, filename: String, flags: Int) -> Bool
+FreeImage_GetFileType: extern func (String, Int) -> ImageFormat
 FreeImage_GetFileTypeFromHandle: extern func (IOHandler*, Handle, Int) -> ImageFormat
 FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat
 FreeImage_FIFSupportsReading: extern func (ImageFormat) -> Bool
