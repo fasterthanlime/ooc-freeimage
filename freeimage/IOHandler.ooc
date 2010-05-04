@@ -19,6 +19,10 @@ IOHandler: cover from FreeImageIO {
 
     new: static func ~empty -> This {
         this: This
+        this read_proc = null
+        this write_proc = null
+        this seek_proc = null
+        this tell_proc = null
         return this
     }
 }

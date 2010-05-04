@@ -36,6 +36,12 @@ Bitmap: cover from FIBITMAP* {
 
     clone: extern(FreeImage_Clone) func -> This
 
+    save: func (filename: String, format: ImageFormat) -> Bool {
+        FreeImage_Save(format, this, filename, 0)
+    }
+
+    unload: extern(FreeImage_Unload) func
+
     width: extern(FreeImage_GetWidth) func -> Int
     height: extern(FreeImage_GetHeight) func -> Int
     bpp: extern(FreeImage_GetBPP) func -> Int
@@ -45,12 +51,15 @@ Bitmap: cover from FIBITMAP* {
     // Toolkit functions
     rescale: extern(FreeImage_Rescale) func (width, height: Int, filter: Filter) -> This
     thumbnail: extern(FreeImage_MakeThumbnail) func (max: Int, convert: Bool) -> This
+    thumbnail: func ~defaultConvert (max: Int) -> This {
+        thumbnail(max, true)
+    }
 }
 
 FreeImage_Allocate: extern func (Int, Int, Int, Int, Int, Int) -> Bitmap
 FreeImage_Load: extern func (ImageFormat, String, Int) -> Bitmap
 FreeImage_LoadFromHandle: extern func (ImageFormat, IOHandler*, Handle, Int) -> Bitmap
-FreeImage_Save: extern func (Format, Bitmap, filename: String, flags: Int) -> Bool
+FreeImage_Save: extern func (ImageFormat, Bitmap, String, Int) -> Bool
 FreeImage_GetFileType: extern func (String, Int) -> ImageFormat
 FreeImage_GetFileTypeFromHandle: extern func (IOHandler*, Handle, Int) -> ImageFormat
 FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat

@@ -1,9 +1,9 @@
 use freeimage
-import freeimage/[Version, Bitmap]
+import freeimage/[Version, Bitmap, ImageFormat]
 import io/File
-import structs/Array
+import structs/ArrayList
 
-main: func (args : Array<String>) {
+main: func (args : ArrayList<String>) {
     println("FreeImage version " + FreeImage getVersion())
     println(FreeImage getCopyrightMessage())
 
@@ -18,10 +18,9 @@ main: func (args : Array<String>) {
     }
     else {
         bitmap2 := Bitmap new(args[1])
-        printf("bitmap from filepath: %ix%i bpp: %i\n", bitmap2 height(), bitmap2 width(), bitmap2 bpp())
+        printf("bitmap from file: %ix%i bpp: %i\n", bitmap2 height(), bitmap2 width(), bitmap2 bpp())
 
-        bitmap3f := File new(args[1])
-        bitmap3 := Bitmap new(bitmap3f)
-        printf("bitmap from File: %ix%i bpp: %i\n", bitmap3 height(), bitmap3 width(), bitmap3 bpp())
+        thumb := bitmap2 thumbnail(256)
+        thumb save("test.jpg", FIF_JPEG)
     }
 }
