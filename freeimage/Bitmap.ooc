@@ -10,13 +10,16 @@ Bitmap: cover from FIBITMAP* {
     new: static func ~fromPath (path: String) -> This {
         fif := FIF_UNKNOWN
         fif = FreeImage_GetFileType(path, 0)
+
         if (fif == FIF_UNKNOWN) {
             fif = FreeImage_GetFIFFromFilename(path)
         }
+
         if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsReading(fif)) {
             bitmap := FreeImage_Load(fif, path, 0)
             return bitmap
         }
+
         return null
     }
 
@@ -27,10 +30,12 @@ Bitmap: cover from FIBITMAP* {
     new: static func ~fromHandle (io: IOHandler*, handle: FStream) -> This {
         fif := FIF_UNKNOWN
         fif = FreeImage_GetFileTypeFromHandle(io, handle, 0)
+
         if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsReading(fif)) {
             bitmap := FreeImage_LoadFromHandle(fif, io, handle, 0)
             return bitmap
         }
+
         return null
     }
 

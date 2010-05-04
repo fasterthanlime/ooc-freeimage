@@ -25,10 +25,12 @@ htell: func (handle: FStream) -> Long {
 main: func {
     io := IOHandler new(hread, null, hseek, htell)
     bitmap := Bitmap new(io&, stdin)
+
     if(!bitmap) {
         "Couldn't load the bitmap!" println()
         return 1
     }
+
     "%ix%i bpp: %i" format(bitmap width, bitmap height, bitmap bpp) println()
     return 0
 }
