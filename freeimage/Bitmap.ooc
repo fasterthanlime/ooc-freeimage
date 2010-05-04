@@ -42,9 +42,17 @@ Bitmap: cover from FIBITMAP* {
 
     unload: extern(FreeImage_Unload) func
 
-    width: extern(FreeImage_GetWidth) func -> Int
-    height: extern(FreeImage_GetHeight) func -> Int
-    bpp: extern(FreeImage_GetBPP) func -> Int
+    width: Int {
+        get: extern(FreeImage_GetWidth)
+    }
+
+    height: Int {
+        get: extern(FreeImage_GetHeight)
+    }
+
+    bpp: Int {
+        get: extern(FreeImage_GetBPP)
+    }
 
     imageType: extern(FreeImage_GetImageType) func -> ImageType
 
