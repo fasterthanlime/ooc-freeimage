@@ -5,6 +5,6 @@ FreeImage: cover {
     MinorVersion: extern(FREEIMAGE_MINOR_VERSION) static Int
     ReleaseSerial: extern(FREEIMAGE_RELEASE_SERIAL) static Int
 
-    getVersion: extern(FreeImage_GetVersion) static func -> String
-    getCopyrightMessage: extern(FreeImage_GetCopyrightMessage) static func -> String
+    version: extern(FreeImage_GetVersion) static func -> String
+    copyrightMessage: extern(FreeImage_GetCopyrightMessage) static func -> String
 }

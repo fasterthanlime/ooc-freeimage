@@ -4,8 +4,8 @@ import io/File
 import structs/ArrayList
 
 main: func (args : ArrayList<String>) {
-    println("FreeImage version " + FreeImage getVersion())
-    println(FreeImage getCopyrightMessage())
+    println("FreeImage version " + FreeImage version())
+    println(FreeImage copyrightMessage())
 
     bitmap1 := Bitmap new(320, 240, 32)
     printf("new bitmap: %ix%i bpp: %i\n", bitmap1 height(), bitmap1 width(), bitmap1 bpp())
