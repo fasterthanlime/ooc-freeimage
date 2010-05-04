@@ -11,15 +11,15 @@ import freeimage/[IOHandler, Bitmap]
 import io/FileReader
 
 hread: func (buffer: Pointer, size: UInt, count: UInt, handle: Handle) -> UInt {
-    fread(buffer, size, count, handle)
+    fread(buffer, size, count, handle as FStream)
 }
 
 hseek: func (handle: Handle, offset: Long, origin: Int) -> Int {
-    fseek(handle, offset, origin)
+    fseek(handle as FStream, offset, origin)
 }
 
 htell: func (handle: Handle) -> Long {
-    ftell(handle)
+    ftell(handle as FStream)
 }
 
 main: func {
@@ -29,6 +29,6 @@ main: func {
         "Couldn't load the bitmap!" println()
         return 1
     }
-    "%ix%i bpp: %i" format(bitmap width(), bitmap height(), bitmap bpp()) println()
+    "%ix%i bpp: %i" format(bitmap width, bitmap height, bitmap bpp) println()
     return 0
 }
