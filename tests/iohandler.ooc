@@ -10,21 +10,21 @@ use freeimage
 import freeimage/[IOHandler, Bitmap]
 import io/FileReader
 
-hread: func (buffer: Pointer, size: UInt, count: UInt, handle: Handle) -> UInt {
-    fread(buffer, size, count, handle as FStream)
+hread: func (buffer: Pointer, size: UInt, count: UInt, handle: FStream) -> UInt {
+    fread(buffer, size, count, handle)
 }
 
-hseek: func (handle: Handle, offset: Long, origin: Int) -> Int {
-    fseek(handle as FStream, offset, origin)
+hseek: func (handle: FStream, offset: Long, origin: Int) -> Int {
+    fseek(handle, offset, origin)
 }
 
-htell: func (handle: Handle) -> Long {
-    ftell(handle as FStream)
+htell: func (handle: FStream) -> Long {
+    ftell(handle)
 }
 
 main: func {
     io := IOHandler new(hread, null, hseek, htell)
-    bitmap := Bitmap new(io&, stdin as Handle)
+    bitmap := Bitmap new(io&, stdin)
     if(!bitmap) {
         "Couldn't load the bitmap!" println()
         return 1

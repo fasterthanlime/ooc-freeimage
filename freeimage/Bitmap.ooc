@@ -24,7 +24,7 @@ Bitmap: cover from FIBITMAP* {
         This new(file path)
     }
 
-    new: static func ~fromHandle (io: IOHandler*, handle: Handle) -> This {
+    new: static func ~fromHandle (io: IOHandler*, handle: FStream) -> This {
         fif := FIF_UNKNOWN
         fif = FreeImage_GetFileTypeFromHandle(io, handle, 0)
         if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsReading(fif)) {
@@ -66,10 +66,10 @@ Bitmap: cover from FIBITMAP* {
 
 FreeImage_Allocate: extern func (Int, Int, Int, Int, Int, Int) -> Bitmap
 FreeImage_Load: extern func (ImageFormat, String, Int) -> Bitmap
-FreeImage_LoadFromHandle: extern func (ImageFormat, IOHandler*, Handle, Int) -> Bitmap
+FreeImage_LoadFromHandle: extern func (ImageFormat, IOHandler*, FStream, Int) -> Bitmap
 FreeImage_Save: extern func (ImageFormat, Bitmap, String, Int) -> Bool
 FreeImage_GetFileType: extern func (String, Int) -> ImageFormat
-FreeImage_GetFileTypeFromHandle: extern func (IOHandler*, Handle, Int) -> ImageFormat
+FreeImage_GetFileTypeFromHandle: extern func (IOHandler*, FStream, Int) -> ImageFormat
 FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat
 FreeImage_FIFSupportsReading: extern func (ImageFormat) -> Bool
 
