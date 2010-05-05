@@ -8,14 +8,14 @@ Bitmap: cover from FIBITMAP* {
     }
 
     new: static func ~fromPath (path: String) -> This {
-        fif := FIF_UNKNOWN
+        fif := ImageFormat unknown
         fif = FreeImage_GetFileType(path, 0)
 
-        if (fif == FIF_UNKNOWN) {
+        if (fif == ImageFormat unknown) {
             fif = FreeImage_GetFIFFromFilename(path)
         }
 
-        if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsReading(fif)) {
+        if ((fif != ImageFormat unknown) && FreeImage_FIFSupportsReading(fif)) {
             bitmap := FreeImage_Load(fif, path, 0)
             return bitmap
         }
@@ -28,10 +28,10 @@ Bitmap: cover from FIBITMAP* {
     }
 
     new: static func ~fromHandle (io: IOHandler*, handle: FStream) -> This {
-        fif := FIF_UNKNOWN
+        fif := ImageFormat unknown
         fif = FreeImage_GetFileTypeFromHandle(io, handle, 0)
 
-        if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsReading(fif)) {
+        if ((fif != ImageFormat unknown) && FreeImage_FIFSupportsReading(fif)) {
             bitmap := FreeImage_LoadFromHandle(fif, io, handle, 0)
             return bitmap
         }
@@ -79,10 +79,26 @@ FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat
 FreeImage_FIFSupportsReading: extern func (ImageFormat) -> Bool
 
 // FREE_IMAGE_TYPE enum
-ImageType: cover from FREE_IMAGE_TYPE
-FIT_UNKNOWN, FIT_BITMAP, FIT_UINT16, FIT_INT16, FIT_UINT32, FIT_INT32,
-FIT_FLOAT, FIT_DOUBLE, FIT_COMPLEX, FIT_RGB16, FIT_RGBA16, FIT_RGBF,
-FIT_RGBAF : extern const ImageType
+//ImageType: cover from FREE_IMAGE_TYPE
+//FIT_UNKNOWN, FIT_BITMAP, FIT_UINT16, FIT_INT16, FIT_UINT32, FIT_INT32,
+//FIT_FLOAT, FIT_DOUBLE, FIT_COMPLEX, FIT_RGB16, FIT_RGBA16, FIT_RGBF,
+//FIT_RGBAF : extern const ImageType
+
+ImageType: enum {
+    unknown: extern(FIT_UNKNOWN)
+    bitmap:  extern(FIT_BITMAP)
+    uint16:  extern(FIT_UINT16)
+    int16:   extern(FIT_INT16)
+    uint32:  extern(FIT_UINT32)
+    int32:   extern(FIT_INT32)
+    float:   extern(FIT_FLOAT)
+    double:  extern(FIT_DOUBLE)
+    complex: extern(FIT_COMPLEX)
+    rgb16:   extern(FIT_RGB16)
+    rgba16:  extern(FIT_RGBA16)
+    rgbf:    extern(FIT_RGBF)
+    rgbaf:   extern(FIT_RGBAF)
+}
 
 // FREE_IMAGE_FILTER enum
 Filter: cover from FREE_IMAGE_FILTER

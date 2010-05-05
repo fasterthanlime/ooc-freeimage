@@ -21,6 +21,6 @@ main: func (args : ArrayList<String>) {
         printf("bitmap from file: %ix%i bpp: %i\n", bitmap2 height(), bitmap2 width(), bitmap2 bpp())
 
         thumb := bitmap2 thumbnail(256)
-        thumb save("test.jpg", FIF_JPEG)
+        thumb save("test.jpg", ImageFormat jpeg)
     }
 }
