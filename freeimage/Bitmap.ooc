@@ -62,7 +62,7 @@ Bitmap: cover from FIBITMAP* {
     imageType: extern(FreeImage_GetImageType) func -> ImageType
 
     // Toolkit functions
-    rescale: extern(FreeImage_Rescale) func (width, height: Int, filter: Filter) -> This
+    rescale: extern(FreeImage_Rescale) func (width, height: Int, filter: ImageFilter) -> This
     thumbnail: extern(FreeImage_MakeThumbnail) func (max: Int, convert: Bool) -> This
     thumbnail: func ~defaultConvert (max: Int) -> This {
         thumbnail(max, true)
@@ -78,13 +78,7 @@ FreeImage_GetFileTypeFromHandle: extern func (IOHandler*, FStream, Int) -> Image
 FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat
 FreeImage_FIFSupportsReading: extern func (ImageFormat) -> Bool
 
-// FREE_IMAGE_TYPE enum
-//ImageType: cover from FREE_IMAGE_TYPE
-//FIT_UNKNOWN, FIT_BITMAP, FIT_UINT16, FIT_INT16, FIT_UINT32, FIT_INT32,
-//FIT_FLOAT, FIT_DOUBLE, FIT_COMPLEX, FIT_RGB16, FIT_RGBA16, FIT_RGBF,
-//FIT_RGBAF : extern const ImageType
-
-ImageType: enum {
+ImageType: extern(FREE_IMAGE_TYPE) enum {
     unknown: extern(FIT_UNKNOWN)
     bitmap:  extern(FIT_BITMAP)
     uint16:  extern(FIT_UINT16)
@@ -100,7 +94,11 @@ ImageType: enum {
     rgbaf:   extern(FIT_RGBAF)
 }
 
-// FREE_IMAGE_FILTER enum
-Filter: cover from FREE_IMAGE_FILTER
-FILTER_BOX, FILTER_BICUBIC, FILTER_BILINEAR, FILTER_BSPLINE, FILTER_CATMULLROM,
-FILTER_LANCZOS3 : extern const Filter
+ImageFilter: extern(FREE_IMAGE_FILTER) enum {
+    box:        extern(FILTER_BOX)
+    bicubic:    extern(FILTER_BICUBIC)
+    bilinear:   extern(FILTER_BILINEAR)
+    bspline:    extern(FILTER_BSPLINE)
+    catmullrom: extern(FILTER_CATMULLROM)
+    lanczos3:   extern(FILTER_LANCZOS3)
+}
