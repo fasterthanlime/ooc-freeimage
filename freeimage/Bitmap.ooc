@@ -63,7 +63,9 @@ Bitmap: cover from FIBITMAP* {
 
     // Toolkit functions
     rescale: extern(FreeImage_Rescale) func (width, height: Int, filter: ImageFilter) -> This
+
     thumbnail: extern(FreeImage_MakeThumbnail) func (max: Int, convert: Bool) -> This
+
     thumbnail: func ~defaultConvert (max: Int) -> This {
         thumbnail(max, true)
     }

@@ -1,5 +1,5 @@
 use freeimage
-import freeimage/[Version, Bitmap, ImageFormat]
+import freeimage/[FreeImage, Bitmap, ImageFormat]
 import io/File
 import structs/ArrayList
 
