@@ -67,12 +67,12 @@ Bitmap: cover from FIBITMAP* {
     scanline: extern(FreeImage_GetScanLine) func (Int) -> UInt8*
 
     getPixelIndex: func (x, y: UInt) -> UInt8 {
-        index: UInt8*
-        FreeImage_GetPixelIndex(this, x, y, index)
+        index: UInt8
+        FreeImage_GetPixelIndex(this, x, y, index&)
         return index
     }
 
-    getPixelColor: func (x, y: UInt) -> UInt8 {
+    getPixelColor: func (x, y: UInt) -> RQBQuad* {
         color: RGBQuad*
         FreeImage_GetPixelColor(this, x, y, color)
         return color
@@ -84,7 +84,6 @@ Bitmap: cover from FIBITMAP* {
 
     setPixelColor: func (x, y: UInt, color: RGBQuad*) {
         FreeImage_GetPixelColor(this, x, y, color)
-        return color
     }
 
     // Toolkit functions
