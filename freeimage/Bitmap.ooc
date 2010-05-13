@@ -61,6 +61,32 @@ Bitmap: cover from FIBITMAP* {
 
     imageType: extern(FreeImage_GetImageType) func -> ImageType
 
+    // Pixel access functions
+    bits: extern(FreeImage_GetBits) func -> UInt8*
+
+    scanline: extern(FreeImage_GetScanLine) func (Int) -> UInt8*
+
+    getPixelIndex: func (x, y: UInt) -> UInt8 {
+        index: UInt8*
+        FreeImage_GetPixelIndex(this, x, y, index)
+        return index
+    }
+
+    getPixelColor: func (x, y: UInt) -> UInt8 {
+        color: RGBQuad*
+        FreeImage_GetPixelColor(this, x, y, color)
+        return color
+    }
+
+    setPixelIndex: func (x, y: UInt, index: UInt8) {
+        FreeImage_SetPixelIndex(this, x, y, index&)
+    }
+
+    setPixelColor: func (x, y: UInt, color: RGBQuad*) {
+        FreeImage_GetPixelColor(this, x, y, color)
+        return color
+    }
+
     // Toolkit functions
     rescale: extern(FreeImage_Rescale) func (width, height: Int, filter: ImageFilter) -> This
 
@@ -79,6 +105,17 @@ FreeImage_GetFileType: extern func (String, Int) -> ImageFormat
 FreeImage_GetFileTypeFromHandle: extern func (IOHandler*, FStream, Int) -> ImageFormat
 FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat
 FreeImage_FIFSupportsReading: extern func (ImageFormat) -> Bool
+FreeImage_GetPixelIndex: extern func (Bitmap, UInt, UInt, UInt8*) -> Bool
+FreeImage_GetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad*) -> Bool
+FreeImage_SetPixelIndex: extern func (Bitmap, UInt, UInt, UInt8*) -> Bool
+FreeImage_SetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad*) -> Bool
+
+RGBQuad: cover from RGBQUAD {
+    red:      extern(rgbRed)      UInt8
+    green:    extern(rgbGreen)    UInt8
+    blue:     extern(rgbBlue)     UInt8
+    reserved: extern(rgbReserved) UInt8
+}
 
 ImageType: extern(FREE_IMAGE_TYPE) enum {
     unknown: extern(FIT_UNKNOWN)
