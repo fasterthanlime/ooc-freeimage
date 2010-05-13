@@ -83,7 +83,7 @@ Bitmap: cover from FIBITMAP* {
     }
 
     setPixelColor: func (x, y: UInt, color: RGBQuad*) {
-        FreeImage_GetPixelColor(this, x, y, color)
+        FreeImage_SetPixelColor(this, x, y, color)
     }
 
     // Toolkit functions
