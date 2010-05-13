@@ -72,8 +72,8 @@ Bitmap: cover from FIBITMAP* {
         return index
     }
 
-    getPixelColor: func (x, y: UInt) -> RGBQuad* {
-        color := gc_malloc(RGBQuad size) as RGBQuad*
+    getPixelColor: func (x, y: UInt) -> RGBQuad {
+        color := RGBQuad new()
         FreeImage_GetPixelColor(this, x, y, color)
         return color
     }
@@ -82,7 +82,7 @@ Bitmap: cover from FIBITMAP* {
         FreeImage_SetPixelIndex(this, x, y, index&)
     }
 
-    setPixelColor: func (x, y: UInt, color: RGBQuad*) {
+    setPixelColor: func (x, y: UInt, color: RGBQuad) {
         FreeImage_SetPixelColor(this, x, y, color)
     }
 
@@ -109,11 +109,30 @@ FreeImage_GetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad*) -> Bool
 FreeImage_SetPixelIndex: extern func (Bitmap, UInt, UInt, UInt8*) -> Bool
 FreeImage_SetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad*) -> Bool
 
-RGBQuad: cover from RGBQUAD {
+RGBQuadStruct: cover from RGBQUAD {
     red:      extern(rgbRed)      UInt8
     green:    extern(rgbGreen)    UInt8
     blue:     extern(rgbBlue)     UInt8
     reserved: extern(rgbReserved) UInt8
+}
+
+RGBQuad: cover from RGBQuadStruct* {
+    new: static func (red, green, blue, reserved: UInt8) -> This {
+        this := gc_malloc(RGBQuadStruct size) as This
+        this@ red = red
+        this@ green = green
+        this@ blue = blue
+        this@ reserved = reserved
+        return this
+    }
+
+    new: static func ~withoutAlpha (red, green, blue: UInt8) -> This {
+        This new(red, green, blue, 255)
+    }
+
+    new: static func ~blank -> This {
+        This new(0, 0, 0, 0)
+    }
 }
 
 ImageType: extern(FREE_IMAGE_TYPE) enum {
