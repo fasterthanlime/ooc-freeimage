@@ -73,7 +73,7 @@ Bitmap: cover from FIBITMAP* {
     }
 
     getPixelColor: func (x, y: UInt) -> RQBQuad* {
-        color: RGBQuad*
+        color := gc_malloc(RQBQuad size) as RGBQuad*
         FreeImage_GetPixelColor(this, x, y, color)
         return color
     }
