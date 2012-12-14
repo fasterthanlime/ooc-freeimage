@@ -65,6 +65,10 @@ Bitmap: cover from FIBITMAP* {
         get { FreeImage_GetBPP(this) }
     }
 
+    convertTo32Bits: func -> This {
+      FreeImage_ConvertTo32Bits(this)
+    }
+
     imageType: extern(FreeImage_GetImageType) func -> ImageType
 
     // Pixel access functions
@@ -117,6 +121,7 @@ FreeImage_SetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad) -> Bool
 FreeImage_GetWidth: extern func (Bitmap) -> UInt
 FreeImage_GetHeight: extern func (Bitmap) -> UInt
 FreeImage_GetBPP: extern func (Bitmap) -> UInt
+FreeImage_ConvertTo32Bits: extern func (Bitmap) -> Bitmap
 
 RGBQuadStruct: cover from RGBQUAD {
     red:      extern(rgbRed)      UInt8
