@@ -1,4 +1,10 @@
 use freeimage
+
+version(windows) {
+  include windows
+}
+import FreeImage
+
 import structs/ArrayList, text/StringTokenizer
 
 ImageFormat: extern(FREE_IMAGE_FORMAT) enum {

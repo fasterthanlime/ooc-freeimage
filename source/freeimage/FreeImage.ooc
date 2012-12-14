@@ -1,5 +1,10 @@
 use freeimage
 
+version(windows) {
+  include windows
+}
+include FreeImage
+
 FreeImage: cover {
     /* These are only needed if you are linking FreeImage statically. */
     initialize:   extern(FreeImage_Initialise)   func

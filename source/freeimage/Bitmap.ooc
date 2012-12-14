@@ -1,4 +1,10 @@
 use freeimage
+
+version(windows) {
+  include windows
+}
+include FreeImage
+
 import io/File
 import freeimage/[ImageFormat, IOHandler]
 

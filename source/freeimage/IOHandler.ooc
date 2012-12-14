@@ -1,4 +1,10 @@
 use freeimage
+
+version(windows) {
+  include windows
+}
+include FreeImage
+
 import io/FileReader
 
 IOHandler: cover from FreeImageIO {

@@ -1,5 +1,6 @@
 Name: FreeImage 3.13.1
 Description: A fast and simple graphics library
 Libs: -lfreeimage
-Includes: FreeImage.h
+IncludePaths: /usr/local/include
+LibPaths: /usr/local/lib
 SourcePath: source
