@@ -47,16 +47,16 @@ Bitmap: cover from FIBITMAP* {
 
     unload: extern(FreeImage_Unload) func
 
-    width: Int {
-        get: extern(FreeImage_GetWidth)
+    width: UInt {
+        get { FreeImage_GetWidth(this) }
     }
 
-    height: Int {
-        get: extern(FreeImage_GetHeight)
+    height: UInt {
+        get { FreeImage_GetHeight(this) }
     }
 
-    bpp: Int {
-        get: extern(FreeImage_GetBPP)
+    bpp: UInt {
+        get { FreeImage_GetBPP(this) }
     }
 
     imageType: extern(FreeImage_GetImageType) func -> ImageType
@@ -97,17 +97,20 @@ Bitmap: cover from FIBITMAP* {
 }
 
 FreeImage_Allocate: extern func (Int, Int, Int, Int, Int, Int) -> Bitmap
-FreeImage_Load: extern func (ImageFormat, String, Int) -> Bitmap
+FreeImage_Load: extern func (ImageFormat, CString, Int) -> Bitmap
 FreeImage_LoadFromHandle: extern func (ImageFormat, IOHandler*, FStream, Int) -> Bitmap
-FreeImage_Save: extern func (ImageFormat, Bitmap, String, Int) -> Bool
-FreeImage_GetFileType: extern func (String, Int) -> ImageFormat
+FreeImage_Save: extern func (ImageFormat, Bitmap, CString, Int) -> Bool
+FreeImage_GetFileType: extern func (CString, Int) -> ImageFormat
 FreeImage_GetFileTypeFromHandle: extern func (IOHandler*, FStream, Int) -> ImageFormat
-FreeImage_GetFIFFromFilename: extern func (String) -> ImageFormat
+FreeImage_GetFIFFromFilename: extern func (CString) -> ImageFormat
 FreeImage_FIFSupportsReading: extern func (ImageFormat) -> Bool
 FreeImage_GetPixelIndex: extern func (Bitmap, UInt, UInt, UInt8*) -> Bool
-FreeImage_GetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad*) -> Bool
+FreeImage_GetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad) -> Bool
 FreeImage_SetPixelIndex: extern func (Bitmap, UInt, UInt, UInt8*) -> Bool
-FreeImage_SetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad*) -> Bool
+FreeImage_SetPixelColor: extern func (Bitmap, UInt, UInt, RGBQuad) -> Bool
+FreeImage_GetWidth: extern func (Bitmap) -> UInt
+FreeImage_GetHeight: extern func (Bitmap) -> UInt
+FreeImage_GetBPP: extern func (Bitmap) -> UInt
 
 RGBQuadStruct: cover from RGBQUAD {
     red:      extern(rgbRed)      UInt8

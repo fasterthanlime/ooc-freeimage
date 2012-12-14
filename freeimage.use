@@ -1,5 +1,5 @@
 Name: FreeImage 3.13.1
 Description: A fast and simple graphics library
-Libs: -lfreeimage-3.13.1
+Libs: -lfreeimage
 Includes: FreeImage.h
-SourcePath: .
+SourcePath: source
